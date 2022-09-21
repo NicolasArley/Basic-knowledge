@@ -1,6 +1,9 @@
 ﻿using System;
 using Business.Triangles;
 using Business.Human;
+using Business.PokeApi;
+using System.Collections.Generic;
+using Business.Models;
 
 namespace Presentation
 {
@@ -25,7 +28,7 @@ namespace Presentation
 6. Overloadedmethods
 7. Overloadedconstructors
 8. Inherenting
-9. Get a Pokemon Details
+9. Get a Pokemon based on one color
 Enter the number:
 ";
 
@@ -81,7 +84,27 @@ Enter the number:
                             restart = Console.ReadLine().ToUpper();
                             break;
                         case "8":
-                            Console.WriteLine("Nothing yet");
+                            GetStats();
+                            Console.WriteLine(repeat);
+                            restart = Console.ReadLine().ToUpper();
+                            break;
+                        case "9":
+                            Console.WriteLine("Write a color:" + "\r\n" +
+                                @"1. black
+2. blue
+3. brown
+4. gray
+5. green
+6. pink
+7. purple
+8. red
+9. white
+10. yellow
+");
+                            string color = Console.ReadLine().ToLower();
+                            List<string> pokemon = PokeApi.GetPokemon(color).Result;
+                            Console.WriteLine(string.Join(", ", pokemon));
+                            Console.ReadKey();
                             Console.WriteLine(repeat);
                             restart = Console.ReadLine().ToUpper();
                             break;
@@ -120,6 +143,7 @@ Enter the number:
             strength = 10000;
 
             Console.WriteLine("His name is " + name + ", his age is " + age + ", his favorite number is " + favoritenum + " and his level of power is: " + strength);
+            Console.WriteLine("Here ends the method Simplestatements");
         }
 
         //Complex statements
@@ -211,26 +235,73 @@ Enter the number:
         //Here is an example of overloaded methods
         static double Multiplication(double num1, double num2, double num3) => num1 * num2 * num3;
 
-        static void Getcharacter()
+        public static void GetStats()
         {
             Console.WriteLine("Choose the kind of hero you want to play!" + "\r\n" +
-                    "-----------------------------------------");
-
-            string heroes = @"1. A simple Human
-2. Assassin
-3. Archer
+                   "-----------------------------------------" + "\r\n" +
+                   @"1. A simple Human
+2. Archer
+3. Assassin
 4. Knight
 5. Wizard
 6. Corrupted Wizard
-Enter the number:";
-            string hero = Console.ReadLine();
+Enter the number:");
 
-            switch (hero)
+            string heroType = Console.ReadLine();
+            int heroType2 = Int32.Parse(heroType);
+
+            Stats stats = new Stats();
+
+            switch (heroType2)
             {
-                case "1":
-                    Console.WriteLine("Nothing yet");
+                case 1:
+                    stats.Vitality = 100;
+                    stats.Strength = 10;
+                    stats.Defense = 10;
+                    Human desc = new Human();
+                    desc.GetDescription();
+                    break;
+                case 2:
+                    Archer hero = new Archer();
+                    stats = hero.GetHeroStats();
+                    Archer desc1 = new Archer();
+                    desc1.GetDescription();
+                    break;
+                case 3:
+                    Assassin hero2 = new Assassin();
+                    stats = hero2.GetHeroStats();
+                    Assassin desc2 = new Assassin();
+                    desc2.GetDescription();
+                    break;
+                case 4:
+                    Knight hero3 = new Knight();
+                    stats = hero3.GetHeroStats();
+                    Knight desc3 = new Knight();
+                    desc3.GetDescription();
+                    break;
+                case 5:
+                    Wizard hero4 = new Wizard();
+                    stats = hero4.GetHeroStats();
+                    Wizard desc4 = new Wizard();
+                    desc4.GetDescription();
+                    break;
+                case 6:
+                    CorruptedWizard hero5 = new CorruptedWizard();
+                    stats = hero5.GetHeroStats();
+                    CorruptedWizard desc5 = new CorruptedWizard();
+                    desc5.GetDescription();
+                    break;
+                default:
+                    Console.WriteLine("No hero selected");
                     break;
             }
+
+            Console.WriteLine("\r\nThe stats of the hero:" + "\r\n" +
+                "----------------------" + "\r\n" +
+                "Vitality: " + stats.Vitality + "\r\n" +
+                "Strength: " + stats.Strength + "\r\n" +
+                "Defense: " + stats.Defense + "\r\n");
         }
+        
     }
 }

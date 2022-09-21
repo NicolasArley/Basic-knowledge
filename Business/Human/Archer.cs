@@ -1,33 +1,35 @@
 ﻿using Business.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Human
 {
     public class Archer: Human
     {
-        public Skills GetProperties()
+        public Stats GetHeroStats()
         {
-            Skills skills = new Skills
+            Value = new Stats()
             {
                 Vitality = 130,
                 Strength = 35,
                 Defense = 30
             };
-            return skills;
+            return Value;
         }
 
-        public void Projectionweapons()
+        public override void GetDescription()
         {
-            Console.WriteLine("Ballesta\r\nProyectiles de aire comprimido\r\nArco y flecha");
-        }
-
-        public void Excelentaim()
-        {
-            Console.WriteLine("");
+            base.GetDescription();
+            Console.WriteLine("\r\nThe special abilities of the Archer:" + "\r\n" +
+                "- Excellent Aim in all ranges." + "\r\n" +
+                "- Moves Fast." + "\r\n" +
+                "- Can fight hand-to-hand." + "\r\n" +
+                "- Reconnaissance of distant enemies." + "\r\n" +
+                "- Can camouflage itself in its environment." + "\r\n" +
+                "- Can track enemies." + "\r\n" +
+                "\r\nThe Archer can use the following as a weapon:" + "\r\n"+
+                "- Crossbow." + "\r\n" +
+                "- Bow and Arrow." + "\r\n" +
+                "- Short Sword.");
         }
 
     }

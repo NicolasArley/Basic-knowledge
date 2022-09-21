@@ -1,39 +1,36 @@
 ﻿using Business.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Human
 {
     public class Assassin : Human
     {
-
-        public Skills GetProperties()
+        public Stats GetHeroStats()
         {
-            Skills skills = new Skills
+            Value = new Stats()
             {
                 Vitality = 125,
-                Strength = 40,
-                Defense = 30
+                Strength = 35,
+                Defense = 25
             };
-            return skills;
+            return Value;
         }
 
-        public void Stealth()
+        public override void GetDescription()
         {
-            Console.WriteLine("");
+            base.GetDescription();
+            Console.WriteLine("\r\nThe special abilities of the Assassin:" + "\r\n" +
+                "- Good Aim in near ranges." + "\r\n" +
+                "- Moves Agile and Silent." + "\r\n" +
+                "- Can throw Knifes." + "\r\n" +
+                "- Can fight hand-to-hand." + "\r\n" +
+                "- Can camouflage itself in its environment." + "\r\n" +
+                "- Can use poisons and implement it in weapons." + "\r\n" +
+                "\r\nThe Assassin can use the following as a weapon:" + "\r\n" +
+                "- All kind of Knifes." + "\r\n" +
+                "- Short Blowgun." + "\r\n" +
+                "- Knuckles.");
         }
 
-        public void Throwingweapons()
-        {
-            Console.WriteLine("");
-        }
-
-        public void Poisonmanagement()
-        {
-            Console.WriteLine("");
-        }
     }
 }
